@@ -1,0 +1,110 @@
+:root{
+  --default-font-color: #000000;
+
+  --years-font-color: rgb(195, 195, 195);
+  --years-hover-font-color:rgb(159, 159, 159);
+
+  --months-font-color: rgb(212, 212, 212);
+  --months-hover-font-color: rgb(174, 174, 174);
+  --months-active-bg-color: rgba(202, 202, 202, 0.3);
+
+  --week-days-font-color: rgb(152, 152, 152);
+}
+
+body{
+  font-family: 'Lato';
+}
+
+.datetime__controls{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:8px;
+
+  padding: 20px;
+  max-width: 600px;
+  /* background: #e5e5e5; */
+}
+
+.datetime__controls__years{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: right;
+
+  color: var(--years-font-color);
+}
+
+.datetime__controls__years__wrapper{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  gap:8px;
+}
+
+.datetime__controls__years__prev,
+.datetime__controls__years__next{
+  cursor: pointer;
+}
+
+.datetime__controls__years__prev:hover svg,
+.datetime__controls__years__next:hover svg{
+  fill:var(--years-hover-font-color);
+}
+
+.datetime__controls__years svg{
+  fill: var(--years-font-color);
+  width: 20px;
+}
+
+.datetime__controls__years__current{
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.datetime__controls__months{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap:4px;
+
+  font-size: 16px;
+  color: var(--months-font-color);
+
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--months-font-color);
+}
+
+.datetime__controls__month{
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.datetime__controls__month:hover{
+  color:var(--months-hover-font-color);
+}
+
+.datetime__controls__month.datetime__controls__month__active{
+  color: var(--default-font-color);
+  background: var(--months-active-bg-color);
+  font-weight: 900;
+}
+
+table.datetime__controls__days{
+  font-size: 20px;
+  border-spacing: 20px;
+  width: 100%;
+}
+
+table.datetime__controls__days th{
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--week-days-font-color);
+}
+
+table.datetime__controls__days td{
+  cursor: pointer;
+  text-align: center;
+}
