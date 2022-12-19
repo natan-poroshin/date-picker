@@ -1,9 +1,14 @@
 const dateTimeControls = document.querySelector(".datetime__controls");
 
-const createMonthSelector = (date = new Date()) => {
+const updateMonthSelector = (date = new Date()) => {
   const monthControlWrapper = document.querySelector(
     ".datetime__controls__months"
   );
+  if(monthControlWrapper.childNodes.length !== 0){
+    [...monthControlWrapper.childNodes].forEach(element =>
+       element.remove());
+  }
+
   getMonthNames().forEach((monthName, index) => {
     const monthSelectItem = document.createElement("div");
     const monthNum = index + 1;
@@ -18,18 +23,18 @@ const createMonthSelector = (date = new Date()) => {
     monthSelectItem.append(monthName);
     monthControlWrapper.appendChild(monthSelectItem);
   });
-  dateTimeControls.appendChild(monthControlWrapper);
 };
 
 const updateDayTable = (date = new Date()) => {
-  let table = document.querySelector(".datetime__controls__days");
+  const daysControlWrapper = document.querySelector('.datetime__controls__days');
+  let table = document.querySelector(".datetime__controls__days__table");
 
   if (table != null) {
     table.remove();
   }
 
   table = document.createElement("table");
-  table.classList.add("datetime__controls__days");
+  table.classList.add("datetime__controls__days__table");
 
   const tableHeader = document.createElement("thead");
   const tableHeaderRow = document.createElement("tr");
@@ -42,7 +47,7 @@ const updateDayTable = (date = new Date()) => {
   });
 
   table.appendChild(tableHeader);
-  dateTimeControls.appendChild(table);
+  daysControlWrapper.appendChild(table);
 
   // table grid
   const maxCellsInRow = 7;
@@ -74,6 +79,8 @@ const updateDayTable = (date = new Date()) => {
       cellItemWrapper.dataset.dayNum = dayObj.dayNum;
       cellItemWrapper.dataset.dayOfMonth = dayObj.dayOfMonth;
       cellItemWrapper.dataset.weekend = dayObj.isWeekend;
+      cellItemWrapper.dataset.dateStr = dayObj.dateStr;
+
       cellItemWrapper.onclick = onDaySelectedHandler;
       cellItemWrapper.append(dayObj.dayOfMonth);
       tableCell.appendChild(cellItemWrapper);
@@ -171,6 +178,11 @@ const getSelectedDate = () => {
   return resultDate;
 };
 
+const getFullDate = () => {
+  const dayElement = document.querySelector('.datetime__controls__day__item.datetime__controls__day__item__selected');
+  return dayElement?.dataset?.dateStr;
+}
+
 const onYearSwitchHandler = (ev) => {
   const callElement = ev.currentTarget;
   const currentDate = getSelectedDate();
@@ -217,10 +229,47 @@ const onDaySelectedHandler = (ev) => {
   }
 };
 
-document.querySelector(".datetime__controls__years__next").onclick =
-  onYearSwitchHandler;
-document.querySelector(".datetime__controls__years__prev").onclick =
-  onYearSwitchHandler;
+const toggleDatePicker = () => {
+  const controlsElement = document.querySelector('.datetime__controls');
+  controlsElement.classList.toggle('datetime__controls__hidden');
+}
 
-createMonthSelector();
-updateDayTable();
+const createDatePicker = (date = new Date()) => {
+  document.querySelector(".datetime__controls__years__next").onclick =
+    onYearSwitchHandler;
+  document.querySelector(".datetime__controls__years__prev").onclick =
+    onYearSwitchHandler;
+
+  updateYear(date.getFullYear());
+  updateMonthSelector(date);
+  updateDayTable(date);
+
+  document.querySelector('.datetime__input').onclick = (ev) => {
+    const callElement = ev.target;
+    if(callElement.value != ""){
+      updateYear(date.getFullYear());
+      updateMonthSelector(date);
+      updateDayTable(date);
+    }
+
+    toggleDatePicker();
+  };
+
+  document.querySelector('.datetime__controls__select__btn').onclick = (ev) => {
+    const fullDate = getFullDate();
+    if(fullDate != null) {
+      const dateInputElement =  document.querySelector('.datetime__input');
+      dateInputElement.value = fullDate;
+    }
+    toggleDatePicker();
+  };
+
+  document.querySelector('.datetime__controls__today__btn').onclick = (ev) => {
+    const today = new Date();
+    const dateInputElement =  document.querySelector('.datetime__input');
+    dateInputElement.value = today.toISOString().split('T')[0];
+    toggleDatePicker();
+  }
+}
+
+createDatePicker()
