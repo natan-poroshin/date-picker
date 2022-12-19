@@ -11,10 +11,42 @@
   --outer-months-days-font-color: rgb(195, 195, 195);
   --day-selected-bg-color:#e0e0e0;
   --weekend-days-font-color: #ff3535;
+
+  --button-bg-color: rgba(151, 144, 255, 0.5);
+  --button-hover-bg-color: rgba(188, 184, 255, 0.5);
 }
 
 body{
   font-family: 'Lato';
+}
+
+.datetime{
+  position: relative;
+}
+
+input.datetime__input{
+  position: relative;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding: 8px 16px;
+}
+
+input.datetime__input::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  left: 0;
+  bottom: 0;
+  background: #000000;
+  transition: all 0.5s;
+}
+
+input.datetime__input::-webkit-calendar-picker-indicator,
+input.datetime__input::-webkit-inner-spin-button {
+    display: none;
 }
 
 .datetime__controls{
@@ -25,7 +57,14 @@ body{
 
   padding: 20px;
   max-width: 600px;
-  /* background: #e5e5e5; */
+
+  position: absolute;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 8px;
+  z-index: 2;
+}
+
+.datetime__controls__hidden{
+  display: none;
 }
 
 .datetime__controls__years{
@@ -94,19 +133,19 @@ body{
   font-weight: 900;
 }
 
-table.datetime__controls__days{
+table.datetime__controls__days__table{
   font-size: 20px;
   border-spacing: 8px;
   width: 100%;
 }
 
-table.datetime__controls__days th{
+table.datetime__controls__days__table th{
   font-size: 24px;
   font-weight: 900;
   color: var(--week-days-font-color);
 }
 
-table.datetime__controls__days td{
+table.datetime__controls__days__table td{
   text-align: center;
 }
 
@@ -145,4 +184,24 @@ table.datetime__controls__days td{
 
 .datetime__controls__day__item__selected {
   background: var(--day-selected-bg-color);
+}
+
+.datetime__controls__btns{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.datetime__controls__btns>button{
+  display: block;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 12px 24px;
+  background: var(--button-bg-color);
+}
+
+.datetime__controls__btns>button:hover{
+  background: var(--button-hover-bg-color);
 }

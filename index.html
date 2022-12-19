@@ -12,8 +12,8 @@
     <h1 class="date-time-picker">Custom date time picker</h1>
 
     <div class="datetime">
-      <span class="datetime__display__current">dd/mm/YY</span>
-      <div class="datetime__controls">
+      <input type="date" class="datetime__input">
+      <div class="datetime__controls datetime__controls__hidden">
         <div class="datetime__controls__years">
           <div class="datetime__controls__years__wrapper">
             <div class="datetime__controls__years__prev">
@@ -62,6 +62,11 @@
           </div>
         </div>
         <div class="datetime__controls__months"></div>
+        <div class="datetime__controls__days"></div>
+        <div class="datetime__controls__btns">
+          <button class="datetime__controls__today__btn">Today</button>
+          <button class="datetime__controls__select__btn">Confirm</button>
+        </div>
       </div>
     </div>
   </body>
