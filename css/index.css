@@ -9,6 +9,7 @@
   --months-active-bg-color: rgba(202, 202, 202, 0.3);
 
   --outer-months-days-font-color: rgb(195, 195, 195);
+  --day-selected-bg-color:#e0e0e0;
   --weekend-days-font-color: #ff3535;
 }
 
@@ -110,6 +111,7 @@ table.datetime__controls__days td{
 }
 
 .datetime__controls__day__item{
+  position: relative;
   border-radius: 50%;
   width: 28px;
   height: 28px;
@@ -128,4 +130,19 @@ table.datetime__controls__days td{
 
 .datetime__controls__day__item__prev__next{
   color: var(--outer-months-days-font-color);
+}
+
+.datetime__controls__day__item__today::after{
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+  background: #110dff;
+}
+
+.datetime__controls__day__item__selected {
+  background: var(--day-selected-bg-color);
 }
