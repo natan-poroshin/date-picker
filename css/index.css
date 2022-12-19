@@ -8,7 +8,8 @@
   --months-hover-font-color: rgb(174, 174, 174);
   --months-active-bg-color: rgba(202, 202, 202, 0.3);
 
-  --week-days-font-color: rgb(152, 152, 152);
+  --outer-months-days-font-color: rgb(195, 195, 195);
+  --weekend-days-font-color: #ff3535;
 }
 
 body{
@@ -94,7 +95,7 @@ body{
 
 table.datetime__controls__days{
   font-size: 20px;
-  border-spacing: 20px;
+  border-spacing: 8px;
   width: 100%;
 }
 
@@ -105,6 +106,26 @@ table.datetime__controls__days th{
 }
 
 table.datetime__controls__days td{
-  cursor: pointer;
   text-align: center;
+}
+
+.datetime__controls__day__item{
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.datetime__controls__day__item:hover{
+  background: #f0f0f0;
+}
+
+.datetime__controls__day__item__weekend{
+  color: var(--weekend-days-font-color);
+}
+
+.datetime__controls__day__item__prev__next{
+  color: var(--outer-months-days-font-color);
 }
