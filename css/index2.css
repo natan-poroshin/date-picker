@@ -1,0 +1,204 @@
+:root{
+  --default-font-color: #000000;
+
+  --years-font-color: rgb(195, 195, 195);
+  --years-hover-font-color:rgb(159, 159, 159);
+
+  --months-font-color: rgb(212, 212, 212);
+  --months-hover-font-color: rgb(174, 174, 174);
+  --months-active-bg-color: rgba(202, 202, 202, 0.3);
+
+  --outer-months-days-font-color: rgb(195, 195, 195);
+  --day-selected-bg-color:#e0e0e0;
+  --weekend-days-font-color: #ff3535;
+
+  --button-bg-color: rgba(151, 144, 255, 0.5);
+  --button-hover-bg-color: rgba(188, 184, 255, 0.5);
+}
+
+body{
+  font-family: 'Lato';
+}
+
+.datetime{
+  position: relative;
+}
+
+input.datetime__input{
+  position: relative;
+  border: none;
+  outline: none;
+  font-size: 20px;
+  padding: 8px 16px;
+}
+
+input.datetime__input::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  border-radius: 4px;
+  left: 0;
+  bottom: 0;
+  background: #000000;
+  transition: all 0.5s;
+}
+
+input.datetime__input::-webkit-calendar-picker-indicator,
+input.datetime__input::-webkit-inner-spin-button {
+    display: none;
+}
+
+.datetime__controls{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap:8px;
+
+  padding: 20px;
+  max-width: 600px;
+
+  position: absolute;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 8px;
+  z-index: 2;
+}
+
+.datetime__controls__hidden{
+  display: none;
+}
+
+.datetime__controls__years{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: right;
+
+  color: var(--years-font-color);
+}
+
+.datetime__controls__years__wrapper{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  gap:8px;
+}
+
+.datetime__controls__years__prev,
+.datetime__controls__years__next{
+  cursor: pointer;
+}
+
+.datetime__controls__years__prev>img,
+.datetime__controls__years__next>img{
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+
+.datetime__controls__years__current{
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.datetime__controls__months{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap:4px;
+
+  font-size: 16px;
+  color: var(--months-font-color);
+
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--months-font-color);
+}
+
+.datetime__controls__month{
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.datetime__controls__month:hover{
+  color:var(--months-hover-font-color);
+}
+
+.datetime__controls__month.datetime__controls__month__active{
+  color: var(--default-font-color);
+  background: var(--months-active-bg-color);
+  font-weight: 900;
+}
+
+table.datetime__controls__days__table{
+  font-size: 20px;
+  border-spacing: 8px;
+  width: 100%;
+}
+
+table.datetime__controls__days__table th{
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--week-days-font-color);
+}
+
+table.datetime__controls__days__table td{
+  text-align: center;
+}
+
+.datetime__controls__day__item{
+  position: relative;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  margin: auto;
+  cursor: pointer;
+}
+
+.datetime__controls__day__item:hover{
+  background: #f0f0f0;
+}
+
+.datetime__controls__day__item__weekend{
+  color: var(--weekend-days-font-color);
+}
+
+.datetime__controls__day__item__prev__next{
+  color: var(--outer-months-days-font-color);
+}
+
+.datetime__controls__day__item__today::after{
+  position: absolute;
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  right: 0;
+  top: 0;
+  background: #110dff;
+}
+
+.datetime__controls__day__item__selected {
+  background: var(--day-selected-bg-color);
+}
+
+.datetime__controls__btns{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+.datetime__controls__btns>button{
+  display: block;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 12px 24px;
+  background: var(--button-bg-color);
+}
+
+.datetime__controls__btns>button:hover{
+  background: var(--button-hover-bg-color);
+}
